@@ -371,6 +371,18 @@
 
   <!-- 報表 -->
   <div id="tab-report" class="section">
+    <div class="card">
+      <div class="section-title">📥 從 Notion 匯入記帳資料</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:1rem">把 Notion 每日記帳資料庫匯出的 CSV 丟進來，自動產生報表</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <label style="background:var(--text);color:#fff;padding:7px 14px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer">
+          選擇 CSV 檔案
+          <input type="file" accept=".csv" id="csv-import" style="display:none" onchange="importNotionCSV(event)">
+        </label>
+        <button class="btn" style="color:var(--red)" onclick="clearImported()">清除匯入資料</button>
+      </div>
+      <div id="import-status" style="font-size:12px;color:var(--text3);margin-top:8px"></div>
+    </div>
     <div class="report-filter">
       <span style="font-size:13px;color:var(--text2)">篩選：</span>
       <select id="report-type" onchange="renderReport()">
@@ -900,7 +912,76 @@ function renderReport(){
   </tr>`).join('');
 }
 
-// ── 匯出 CSV ──
+// ── Notion CSV 匯入 ──
+function importNotionCSV(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const text=e.target.result.replace(/^\uFEFF/,'');
+      const lines=text.split('\n').filter(l=>l.trim());
+      if(lines.length<2){alert('CSV 檔案內容為空！');return;}
+      const headers=parseCSVLine(lines[0]).map(h=>h.trim());
+      let imported=0,skipped=0;
+      for(let i=1;i<lines.length;i++){
+        const vals=parseCSVLine(lines[i]);
+        if(!vals.length||!vals[0])continue;
+        const row={};
+        headers.forEach((h,idx)=>row[h]=vals[idx]||'');
+        const date=row['日期']||row['Name']||row['name']||'';
+        if(!date||!/\d{4}/.test(date)){skipped++;continue;}
+        const cleanDate=date.slice(0,10);
+        const qty=parseInt(row['紅豆餅數量'])||0;
+        const rbRev=parseFloat(row['紅豆餅收入'])||0;
+        const drinkRev=parseFloat(row['飲品收入'])||0;
+        const mktRev=parseFloat(row['行銷空間收入'])||0;
+        const otherRev=parseFloat(row['其他收入'])||0;
+        const subTotal=parseFloat(row['收入小計'])||0;
+        const rev=subTotal||(rbRev+drinkRev+mktRev+otherRev)||parseFloat(row['收入（元）'])||parseFloat(row['收入'])||0;
+        const exp=parseFloat(row['額外支出'])||parseFloat(row['支出（元）'])||parseFloat(row['支出'])||0;
+        const totalExp=parseFloat(row['支出（元）'])||parseFloat(row['成本'])||exp;
+        const profit=parseFloat(row['損益（元）'])||parseFloat(row['損益'])||(rev-totalExp);
+        const weather=row['天氣']||'';
+        const note=row['備注']||row['備註']||'';
+        const exists=ledger.findIndex(r=>r.date===cleanDate);
+        const record={date:cleanDate,qty,rev,totalExp:totalExp||exp,profit,weather,note};
+        if(exists>=0)ledger[exists]=record;
+        else ledger.push(record);
+        imported++;
+      }
+      ledger.sort((a,b)=>b.date.localeCompare(a.date));
+      save('rb_ledger',ledger);
+      renderLedger();updateMonthSelect();renderReport();
+      document.getElementById('import-status').textContent=`✅ 成功匯入 ${imported} 筆${skipped>0?'，略過 '+skipped+' 筆格式錯誤':''}`;
+      document.getElementById('import-status').style.color='var(--green-text)';
+    }catch(err){
+      document.getElementById('import-status').textContent='❌ 匯入失敗，請確認是從 Notion 匯出的 CSV 格式';
+      document.getElementById('import-status').style.color='var(--red-text)';
+    }
+    event.target.value='';
+  };
+  reader.readAsText(file,'UTF-8');
+}
+function parseCSVLine(line){
+  const result=[];let cur='';let inQuote=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){
+      if(inQuote&&line[i+1]==='"'){cur+='"';i++;}
+      else inQuote=!inQuote;
+    } else if(c===','&&!inQuote){result.push(cur.trim());cur='';}
+    else cur+=c;
+  }
+  result.push(cur.trim());return result;
+}
+function clearImported(){
+  if(!confirm('確定清除所有匯入的記帳資料？（手動記帳的也會一起清除）'))return;
+  ledger=[];save('rb_ledger',ledger);
+  renderLedger();updateMonthSelect();renderReport();
+  document.getElementById('import-status').textContent='已清除所有記帳資料';
+  document.getElementById('import-status').style.color='var(--text3)';
+}
 function downloadCSV(filename,rows){
   const csv='\uFEFF'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=filename;a.click();
