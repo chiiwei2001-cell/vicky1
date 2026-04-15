@@ -14,6 +14,7 @@
     --green: #1D9E75; --green-bg: #EAF3DE; --green-text: #3B6D11;
     --red: #E24B4A; --red-bg: #FCEBEB; --red-text: #A32D2D;
     --amber: #BA7517; --amber-bg: #FAEEDA; --amber-text: #854F0B;
+    --blue: #185FA5; --blue-bg: #E6F1FB; --blue-text: #0C447C;
     --radius: 10px; --radius-lg: 14px;
   }
   body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -23,9 +24,10 @@
   .badge-amber { background: var(--amber-bg); color: var(--amber-text); }
   .badge-green { background: var(--green-bg); color: var(--green-text); }
   .badge-red { background: var(--red-bg); color: var(--red-text); }
-  .wrapper { max-width: 780px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  .badge-blue { background: var(--blue-bg); color: var(--blue-text); }
+  .wrapper { max-width: 820px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
   .tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .tab { padding: 7px 16px; font-size: 13px; font-weight: 500; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: var(--surface); color: var(--text2); transition: all 0.15s; }
+  .tab { padding: 7px 14px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: var(--surface); color: var(--text2); transition: all 0.15s; }
   .tab:hover { background: var(--surface2); color: var(--text); }
   .tab.active { background: var(--text); color: #fff; border-color: var(--text); }
   .section { display: none; }
@@ -33,13 +35,14 @@
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
   .section-title { font-size: 15px; font-weight: 700; margin-bottom: 1rem; }
   .sub-title { font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1rem; }
   .metric { background: var(--surface2); border-radius: var(--radius); padding: 0.85rem 1rem; }
   .metric-label { font-size: 11px; color: var(--text3); margin-bottom: 5px; }
-  .metric-value { font-size: 22px; font-weight: 700; color: var(--text); }
+  .metric-value { font-size: 20px; font-weight: 700; color: var(--text); }
   .metric-value.green { color: var(--green); }
   .metric-value.red { color: var(--red); }
   .metric-value.amber { color: var(--amber); }
+  .metric-value.blue { color: var(--blue); }
   .slider-row { margin-bottom: 14px; }
   .slider-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--text2); margin-bottom: 6px; }
   .slider-label span:last-child { font-weight: 700; color: var(--text); font-size: 14px; }
@@ -57,6 +60,7 @@
   .alert-green { background: var(--green-bg); color: var(--green-text); border-color: var(--green); }
   .alert-red { background: var(--red-bg); color: var(--red-text); border-color: var(--red); }
   .alert-amber { background: var(--amber-bg); color: var(--amber-text); border-color: var(--amber); }
+  .alert-blue { background: var(--blue-bg); color: var(--blue-text); border-color: var(--blue); }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   table { width: 100%; font-size: 13px; border-collapse: collapse; }
   th { text-align: left; font-size: 11px; font-weight: 500; color: var(--text3); padding: 6px 8px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -67,12 +71,31 @@
   .btn-primary { background: var(--text); color: #fff; border-color: var(--text); }
   .btn-primary:hover { opacity: 0.85; }
   .btn-sm { padding: 3px 10px; font-size: 11px; }
+  .btn-green { background: var(--green); color: #fff; border-color: var(--green); }
   .info-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
   .info-row span:first-child { color: var(--text2); }
   .info-row span:last-child { font-weight: 500; }
   input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--green); flex-shrink: 0; }
   input[type=date] { flex: 1; padding: 7px 12px; border: 1px solid var(--border2); border-radius: var(--radius); font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text); }
   .notice { background: var(--amber-bg); border: 1px solid var(--amber); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: var(--amber-text); margin-bottom: 1.5rem; }
+  .chart-bar-wrap { display: flex; align-items: flex-end; gap: 3px; height: 120px; margin: 1rem 0 0.5rem; }
+  .chart-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .chart-bar { width: 100%; border-radius: 3px 3px 0 0; min-height: 2px; }
+  .chart-bar-label { font-size: 10px; color: var(--text3); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .report-filter { display: flex; gap: 8px; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+  .report-filter select { padding: 6px 10px; border: 1px solid var(--border2); border-radius: var(--radius); font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text); }
+  .highlight-row { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .highlight-card { flex: 1; min-width: 120px; background: var(--surface2); border-radius: var(--radius); padding: 0.75rem 1rem; }
+  .highlight-card .hl-label { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
+  .highlight-card .hl-value { font-size: 15px; font-weight: 700; }
+  .highlight-card .hl-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .pie-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 0.5rem 0; }
+  .pie-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+  .pie-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .stock-alert { padding: 8px 12px; border-radius: var(--radius); font-size: 12px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .stock-alert-red { background: var(--red-bg); color: var(--red-text); }
+  .stock-alert-amber { background: var(--amber-bg); color: var(--amber-text); }
+  .stock-alert-green { background: var(--green-bg); color: var(--green-text); }
   @media (max-width: 520px) { .two-col { grid-template-columns: 1fr; } .metric-grid { grid-template-columns: 1fr 1fr; } .input-row label { min-width: 80px; } }
 </style>
 </head>
@@ -83,11 +106,16 @@
   <span class="badge badge-amber">複合式行銷空間</span>
 </div>
 <div class="wrapper">
-  <div class="notice">💡 所有資料儲存在瀏覽器本機（localStorage），關掉頁面不會消失。建議加入書籤方便每天使用。</div>
+  <div class="notice">💡 所有資料儲存在瀏覽器本機，關掉頁面不會消失。建議加入書籤方便每天使用。</div>
   <div class="tabs">
     <div class="tab active" onclick="showTab('pnl')">損益試算</div>
     <div class="tab" onclick="showTab('cost')">成本設定</div>
     <div class="tab" onclick="showTab('daily')">每日記帳</div>
+    <div class="tab" onclick="showTab('marketing')">行銷費用</div>
+    <div class="tab" onclick="showTab('flavor')">口味銷售</div>
+    <div class="tab" onclick="showTab('stock')">庫存管理</div>
+    <div class="tab" onclick="showTab('cashflow')">現金流</div>
+    <div class="tab" onclick="showTab('report')">📊 報表</div>
     <div class="tab" onclick="showTab('tasks')">待辦事項</div>
   </div>
 
@@ -96,41 +124,40 @@
     <div class="card">
       <div class="section-title">今天賣幾個才不賠？</div>
       <div class="slider-row">
-        <div class="slider-label"><span>紅豆餅單價（元）</span><span id="price-out">25</span></div>
-        <input type="range" min="15" max="80
-        " step="1" value="25" oninput="updatePnL()" id="sl-price">
+        <div class="slider-label"><span>紅豆餅單價（元）</span><span id="price-out">0</span></div>
+        <input type="range" min="0" max="80" step="1" value="0" oninput="updatePnL()" id="sl-price">
       </div>
       <div class="slider-row">
-        <div class="slider-label"><span>今日目標銷售數量（個）</span><span id="qty-out">100</span></div>
-        <input type="range" min="0" max="1000" step="5" value="100" oninput="updatePnL()" id="sl-qty">
+        <div class="slider-label"><span>今日目標銷售數量（個）</span><span id="qty-out">0</span></div>
+        <input type="range" min="0" max="1000" step="5" value="0" oninput="updatePnL()" id="sl-qty">
       </div>
       <div class="slider-row">
         <div class="slider-label"><span>飲品 / 其他品項收入（元）</span><span id="extra-out">0</span></div>
         <input type="range" min="0" max="1000000" step="100" value="0" oninput="updatePnL()" id="sl-extra">
       </div>
     </div>
-    <div id="pnl-alert" class="alert alert-green">今天預估獲利，繼續加油！</div>
+    <div id="pnl-alert" class="alert alert-amber">請先到「成本設定」填入你的成本資料。</div>
     <div class="metric-grid">
-      <div class="metric"><div class="metric-label">今日預估收入</div><div class="metric-value" id="m-revenue">$2,500</div></div>
-      <div class="metric"><div class="metric-label">今日變動成本</div><div class="metric-value" id="m-vcost">$750</div></div>
-      <div class="metric"><div class="metric-label">今日固定成本攤</div><div class="metric-value" id="m-fcost">$1,333</div></div>
-      <div class="metric"><div class="metric-label">今日損益</div><div class="metric-value green" id="m-profit">+$417</div></div>
+      <div class="metric"><div class="metric-label">今日預估收入</div><div class="metric-value" id="m-revenue">$0</div></div>
+      <div class="metric"><div class="metric-label">今日變動成本</div><div class="metric-value" id="m-vcost">$0</div></div>
+      <div class="metric"><div class="metric-label">今日固定成本攤</div><div class="metric-value" id="m-fcost">$0</div></div>
+      <div class="metric"><div class="metric-label">今日損益</div><div class="metric-value" id="m-profit">$0</div></div>
     </div>
     <div class="card">
       <div class="sub-title">損益平衡分析</div>
-      <div class="info-row"><span>每日損益平衡點</span><span id="bep-qty">83 個</span></div>
-      <div class="info-row"><span>目標達成進度</span><span id="bep-pct" style="color:var(--green)">120%</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="bep-bar" style="width:100%;background:var(--green)"></div></div>
+      <div class="info-row"><span>每日損益平衡點</span><span id="bep-qty">請先填入成本</span></div>
+      <div class="info-row"><span>目標達成進度</span><span id="bep-pct" style="color:var(--text3)">—</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="bep-bar" style="width:0%;background:var(--green)"></div></div>
       <div style="margin-top:12px;display:flex;gap:1.5rem;flex-wrap:wrap">
-        <div style="font-size:12px;color:var(--text2)">每個毛利 <span style="font-weight:700;color:var(--text)" id="unit-margin">$17.5</span></div>
-        <div style="font-size:12px;color:var(--text2)">毛利率 <span style="font-weight:700;color:var(--text)" id="margin-rate">70%</span></div>
+        <div style="font-size:12px;color:var(--text2)">每個毛利 <span style="font-weight:700;color:var(--text)" id="unit-margin">$0</span></div>
+        <div style="font-size:12px;color:var(--text2)">毛利率 <span style="font-weight:700;color:var(--text)" id="margin-rate">—</span></div>
       </div>
     </div>
     <div class="card">
       <div class="sub-title">月度預估（以今日×30天）</div>
       <div class="two-col">
-        <div><div style="font-size:12px;color:var(--text3);margin-bottom:4px">月營收預估</div><div style="font-size:20px;font-weight:700" id="m-month-rev">$75,000</div></div>
-        <div><div style="font-size:12px;color:var(--text3);margin-bottom:4px">月淨利預估</div><div style="font-size:20px;font-weight:700;color:var(--green)" id="m-month-profit">+$12,500</div></div>
+        <div><div style="font-size:12px;color:var(--text3);margin-bottom:4px">月營收預估</div><div style="font-size:20px;font-weight:700" id="m-month-rev">$0</div></div>
+        <div><div style="font-size:12px;color:var(--text3);margin-bottom:4px">月淨利預估</div><div style="font-size:20px;font-weight:700" id="m-month-profit">$0</div></div>
       </div>
     </div>
   </div>
@@ -139,34 +166,39 @@
   <div id="tab-cost" class="section">
     <div class="card">
       <div class="section-title">固定成本（每月）</div>
-      <div class="input-row"><label>租金 / 空間費</label><input type="number" id="c-rent" value="20000" oninput="updateCosts()"><span class="unit">元/月</span></div>
-      <div class="input-row"><label>人力薪資</label><input type="number" id="c-salary" value="15000" oninput="updateCosts()"><span class="unit">元/月</span></div>
-      <div class="input-row"><label>水電費</label><input type="number" id="c-util" value="3000" oninput="updateCosts()"><span class="unit">元/月</span></div>
-      <div class="input-row"><label>設備折舊</label><input type="number" id="c-depr" value="1000" oninput="updateCosts()"><span class="unit">元/月</span></div>
-      <div class="input-row"><label>行銷 / 其他</label><input type="number" id="c-mkt" value="1000" oninput="updateCosts()"><span class="unit">元/月</span></div>
+      <div class="input-row"><label>租金 / 空間費</label><input type="number" id="c-rent" value="0" placeholder="例：20000" oninput="updateCosts()"><span class="unit">元/月</span></div>
+      <div class="input-row"><label>人力薪資</label><input type="number" id="c-salary" value="0" placeholder="例：15000" oninput="updateCosts()"><span class="unit">元/月</span></div>
+      <div class="input-row"><label>水電費</label><input type="number" id="c-util" value="0" placeholder="例：3000" oninput="updateCosts()"><span class="unit">元/月</span></div>
+      <div class="input-row"><label>設備折舊</label><input type="number" id="c-depr" value="0" placeholder="例：1000" oninput="updateCosts()"><span class="unit">元/月</span></div>
+      <div class="input-row"><label>行銷 / 其他</label><input type="number" id="c-mkt" value="0" placeholder="例：1000" oninput="updateCosts()"><span class="unit">元/月</span></div>
       <hr class="divider">
-      <div class="total-row"><span>月固定成本合計</span><span id="total-fixed">$40,000</span></div>
-      <div style="font-size:12px;color:var(--text3);margin-top:6px">每日攤提 <span style="font-weight:700;color:var(--text)" id="daily-fixed">$1,333</span>（以30天計）</div>
+      <div class="total-row"><span>月固定成本合計</span><span id="total-fixed">$0</span></div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px">每日攤提 <span style="font-weight:700;color:var(--text)" id="daily-fixed">$0</span>（以30天計）</div>
     </div>
     <div class="card">
       <div class="section-title">變動成本（每個紅豆餅）</div>
-      <div class="input-row"><label>麵皮材料</label><input type="number" id="v-dough" value="3" step="0.5" oninput="updateCosts()"><span class="unit">元/個</span></div>
-      <div class="input-row"><label>餡料</label><input type="number" id="v-fill" value="3" step="0.5" oninput="updateCosts()"><span class="unit">元/個</span></div>
-      <div class="input-row"><label>瓦斯 / 耗材</label><input type="number" id="v-gas" value="1" step="0.1" oninput="updateCosts()"><span class="unit">元/個</span></div>
-      <div class="input-row"><label>包裝袋</label><input type="number" id="v-pack" value="0.5" step="0.1" oninput="updateCosts()"><span class="unit">元/個</span></div>
+      <div class="input-row"><label>麵皮材料</label><input type="number" id="v-dough" value="0" placeholder="例：3" step="0.5" oninput="updateCosts()"><span class="unit">元/個</span></div>
+      <div class="input-row"><label>餡料</label><input type="number" id="v-fill" value="0" placeholder="例：3" step="0.5" oninput="updateCosts()"><span class="unit">元/個</span></div>
+      <div class="input-row"><label>瓦斯 / 耗材</label><input type="number" id="v-gas" value="0" placeholder="例：1" step="0.1" oninput="updateCosts()"><span class="unit">元/個</span></div>
+      <div class="input-row"><label>包裝袋</label><input type="number" id="v-pack" value="0" placeholder="例：0.5" step="0.1" oninput="updateCosts()"><span class="unit">元/個</span></div>
       <hr class="divider">
-      <div class="total-row"><span>每個變動成本合計</span><span id="total-variable">$7.5</span></div>
+      <div class="total-row"><span>每個變動成本合計</span><span id="total-variable">$0</span></div>
     </div>
     <div class="card">
       <div class="section-title">初始投資成本追蹤</div>
-      <div class="input-row"><label>設備購置</label><input type="number" id="inv-equip" value="80000" oninput="updateInvest()"><span class="unit">元</span></div>
-      <div class="input-row"><label>裝潢</label><input type="number" id="inv-deco" value="50000" oninput="updateInvest()"><span class="unit">元</span></div>
-      <div class="input-row"><label>商標申請費</label><input type="number" id="inv-tm" value="12000" oninput="updateInvest()"><span class="unit">元</span></div>
-      <div class="input-row"><label>會計師事務所費</label><input type="number" id="inv-acc" value="15000" oninput="updateInvest()"><span class="unit">元</span></div>
-      <div class="input-row"><label>其他</label><input type="number" id="inv-other" value="10000" oninput="updateInvest()"><span class="unit">元</span></div>
+      <div class="input-row"><label>設備購置</label><input type="number" id="inv-equip" value="0" placeholder="例：80000" oninput="updateInvest()"><span class="unit">元</span></div>
+      <div class="input-row"><label>裝潢</label><input type="number" id="inv-deco" value="0" placeholder="例：50000" oninput="updateInvest()"><span class="unit">元</span></div>
+      <div class="input-row"><label>商標申請費</label><input type="number" id="inv-tm" value="0" placeholder="例：12000" oninput="updateInvest()"><span class="unit">元</span></div>
+      <div class="input-row"><label>會計師事務所費</label><input type="number" id="inv-acc" value="0" placeholder="例：15000" oninput="updateInvest()"><span class="unit">元</span></div>
+      <div class="input-row"><label>其他</label><input type="number" id="inv-other" value="0" placeholder="例：10000" oninput="updateInvest()"><span class="unit">元</span></div>
       <hr class="divider">
-      <div class="total-row"><span>初始總投資</span><span id="total-invest">$167,000</span></div>
-      <div style="font-size:12px;color:var(--text3);margin-top:6px">以月淨利估算回本時間：<span style="font-weight:700;color:var(--text)" id="payback">計算中</span></div>
+      <div class="total-row"><span>初始總投資</span><span id="total-invest">$0</span></div>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px">以月淨利估算回本時間：<span style="font-weight:700;color:var(--text)" id="payback">請先填入成本</span></div>
+    </div>
+    <div class="card">
+      <div class="section-title">稅務提醒</div>
+      <div id="tax-alerts"></div>
+      <div style="font-size:12px;color:var(--text3);margin-top:8px">台灣小規模營業人每季申報一次營業稅（1/15、4/15、7/15、10/15）</div>
     </div>
   </div>
 
@@ -178,7 +210,18 @@
       <div class="input-row"><label>紅豆餅銷售</label><input type="number" id="d-qty" value="0" min="0"><span class="unit">個</span></div>
       <div class="input-row"><label>其他收入</label><input type="number" id="d-extra" value="0" min="0"><span class="unit">元</span></div>
       <div class="input-row"><label>額外支出</label><input type="number" id="d-expense" value="0" min="0"><span class="unit">元</span></div>
-      <div class="input-row"><label>備注</label><input type="text" id="d-note" placeholder="例：下雨、節日活動..."></div>
+      <div class="input-row"><label>天氣</label>
+        <select id="d-weather">
+          <option value="">不記錄</option>
+          <option value="晴天">☀️ 晴天</option>
+          <option value="陰天">☁️ 陰天</option>
+          <option value="下雨">🌧 下雨</option>
+          <option value="颱風">🌀 颱風</option>
+          <option value="假日">🎉 假日</option>
+          <option value="活動">🎪 活動日</option>
+        </select>
+      </div>
+      <div class="input-row"><label>備注</label><input type="text" id="d-note" placeholder="例：附近有活動、新品上市..."></div>
       <div style="display:flex;gap:8px;margin-top:10px">
         <button class="btn btn-primary" onclick="addRecord()">記帳</button>
         <button class="btn" onclick="clearForm()">清除</button>
@@ -190,12 +233,183 @@
       <div class="metric"><div class="metric-label">累計損益</div><div class="metric-value" id="sum-profit">$0</div></div>
       <div class="metric"><div class="metric-label">記帳天數</div><div class="metric-value" id="sum-days">0 天</div></div>
     </div>
+    <div class="card" id="weather-insight-card" style="display:none">
+      <div class="sub-title">天氣銷售分析</div>
+      <div id="weather-insight"></div>
+    </div>
     <div class="card">
       <div class="section-title">帳目記錄</div>
       <div style="overflow-x:auto">
         <table>
-          <thead><tr><th>日期</th><th>數量</th><th>收入</th><th>成本</th><th>損益</th><th>備注</th><th></th></tr></thead>
-          <tbody id="ledger-body"><tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">尚無記錄，開始記帳吧！</td></tr></tbody>
+          <thead><tr><th>日期</th><th>天氣</th><th>數量</th><th>收入</th><th>成本</th><th>損益</th><th>備注</th><th></th></tr></thead>
+          <tbody id="ledger-body"><tr><td colspan="8" style="text-align:center;color:var(--text3);padding:2rem">尚無記錄，開始記帳吧！</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行銷費用 -->
+  <div id="tab-marketing" class="section">
+    <div class="card">
+      <div class="section-title">新增行銷費用</div>
+      <div class="input-row"><label>日期</label><input type="date" id="mk-date"></div>
+      <div class="input-row"><label>費用類別</label>
+        <select id="mk-cat">
+          <option value="攝影／拍攝">攝影／拍攝</option>
+          <option value="投放廣告 Meta">投放廣告 Meta</option>
+          <option value="投放廣告 Google">投放廣告 Google</option>
+          <option value="網紅合作">網紅合作</option>
+          <option value="印刷／設計">印刷／設計</option>
+          <option value="活動費用">活動費用</option>
+          <option value="LINE 官方帳號">LINE 官方帳號</option>
+          <option value="其他行銷">其他行銷</option>
+        </select>
+      </div>
+      <div class="input-row"><label>金額</label><input type="number" id="mk-amount" value="0" min="0"><span class="unit">元</span></div>
+      <div class="input-row"><label>預估帶來收入</label><input type="number" id="mk-roi-rev" value="0" min="0" placeholder="選填"><span class="unit">元</span></div>
+      <div class="input-row"><label>備注</label><input type="text" id="mk-note" placeholder="例：IG廣告3天、拍了15支Reels..."></div>
+      <button class="btn btn-primary" onclick="addMarketing()" style="margin-top:8px">新增</button>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">累計行銷支出</div><div class="metric-value red" id="mk-total">$0</div></div>
+      <div class="metric"><div class="metric-label">預估帶來收入</div><div class="metric-value green" id="mk-roi-total">$0</div></div>
+      <div class="metric"><div class="metric-label">行銷 ROI</div><div class="metric-value" id="mk-roi-rate">—</div></div>
+      <div class="metric"><div class="metric-label">最高支出類別</div><div class="metric-value amber" id="mk-top-cat" style="font-size:13px">—</div></div>
+    </div>
+    <div class="card">
+      <div class="sub-title">各類別費用佔比</div>
+      <div id="mk-breakdown"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">行銷費用記錄</div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>日期</th><th>類別</th><th>金額</th><th>預估收入</th><th>ROI</th><th>備注</th><th></th></tr></thead>
+          <tbody id="mk-body"><tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">尚無行銷費用記錄</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 口味銷售 -->
+  <div id="tab-flavor" class="section">
+    <div class="card">
+      <div class="section-title">新增口味銷售記錄</div>
+      <div class="input-row"><label>日期</label><input type="date" id="fl-date"></div>
+      <div class="input-row"><label>口味</label>
+        <select id="fl-flavor" style="flex:2"></select>
+        <button class="btn btn-sm" onclick="addFlavorOption()" style="white-space:nowrap">＋ 新口味</button>
+      </div>
+      <div class="input-row"><label>銷售數量</label><input type="number" id="fl-qty" value="0" min="0"><span class="unit">個</span></div>
+      <button class="btn btn-primary" onclick="addFlavor()" style="margin-top:8px">新增記錄</button>
+    </div>
+    <div class="card">
+      <div class="sub-title">各口味累計銷售</div>
+      <div id="flavor-chart"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">銷售記錄</div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>日期</th><th>口味</th><th>數量</th><th></th></tr></thead>
+          <tbody id="fl-body"><tr><td colspan="4" style="text-align:center;color:var(--text3);padding:2rem">尚無口味銷售記錄</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 庫存管理 -->
+  <div id="tab-stock" class="section">
+    <div id="stock-alerts-wrap"></div>
+    <div class="card">
+      <div class="section-title">庫存設定</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:1rem">填入目前庫存量，低於警戒量會自動提醒</div>
+      <table>
+        <thead><tr><th>原料</th><th>目前庫存</th><th>單位</th><th>警戒量</th><th>狀態</th><th></th></tr></thead>
+        <tbody id="stock-table"></tbody>
+      </table>
+      <div style="display:flex;gap:8px;margin-top:1rem;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="saveStock()">儲存庫存</button>
+        <button class="btn" onclick="addStockItem()">＋ 新增原料</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 現金流 -->
+  <div id="tab-cashflow" class="section">
+    <div class="card">
+      <div class="section-title">新增現金異動</div>
+      <div class="input-row"><label>日期</label><input type="date" id="cf-date"></div>
+      <div class="input-row"><label>類型</label>
+        <select id="cf-type">
+          <option value="收入">收入</option>
+          <option value="支出">支出</option>
+          <option value="投資">老闆投入資金</option>
+          <option value="提領">老闆提領</option>
+        </select>
+      </div>
+      <div class="input-row"><label>金額</label><input type="number" id="cf-amount" value="0" min="0"><span class="unit">元</span></div>
+      <div class="input-row"><label>說明</label><input type="text" id="cf-note" placeholder="例：當日營收入帳、廠商貨款..."></div>
+      <button class="btn btn-primary" onclick="addCashflow()" style="margin-top:8px">新增</button>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">目前手頭現金</div><div class="metric-value" id="cf-balance">$0</div></div>
+      <div class="metric"><div class="metric-label">本月流入</div><div class="metric-value green" id="cf-in">$0</div></div>
+      <div class="metric"><div class="metric-label">本月流出</div><div class="metric-value red" id="cf-out">$0</div></div>
+      <div class="metric"><div class="metric-label">本月淨現金</div><div class="metric-value" id="cf-net">$0</div></div>
+    </div>
+    <div class="card">
+      <div class="section-title">現金流記錄</div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>日期</th><th>類型</th><th>金額</th><th>餘額</th><th>說明</th><th></th></tr></thead>
+          <tbody id="cf-body"><tr><td colspan="6" style="text-align:center;color:var(--text3);padding:2rem">尚無現金流記錄</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 報表 -->
+  <div id="tab-report" class="section">
+    <div class="report-filter">
+      <span style="font-size:13px;color:var(--text2)">篩選：</span>
+      <select id="report-type" onchange="renderReport()">
+        <option value="month">月報表</option>
+        <option value="week">週報表</option>
+      </select>
+      <select id="report-month" onchange="renderReport()"></select>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;">
+      <button class="btn" onclick="exportPeriodCSV()">⬇ 匯出本期明細</button>
+      <button class="btn" onclick="exportAllCSV()">⬇ 匯出全部帳目</button>
+      <button class="btn" onclick="exportMonthSummaryCSV()">⬇ 匯出月度摘要</button>
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">期間總收入</div><div class="metric-value green" id="rpt-rev">$0</div></div>
+      <div class="metric"><div class="metric-label">期間總支出</div><div class="metric-value red" id="rpt-exp">$0</div></div>
+      <div class="metric"><div class="metric-label">期間損益</div><div class="metric-value" id="rpt-profit">$0</div></div>
+      <div class="metric"><div class="metric-label">記帳天數</div><div class="metric-value" id="rpt-days">0 天</div></div>
+    </div>
+    <div class="highlight-row">
+      <div class="highlight-card"><div class="hl-label">最佳單日</div><div class="hl-value green" id="rpt-best-val">—</div><div class="hl-sub" id="rpt-best-date">—</div></div>
+      <div class="highlight-card"><div class="hl-label">最差單日</div><div class="hl-value red" id="rpt-worst-val">—</div><div class="hl-sub" id="rpt-worst-date">—</div></div>
+      <div class="highlight-card"><div class="hl-label">平均日損益</div><div class="hl-value" id="rpt-avg">—</div><div class="hl-sub">期間平均</div></div>
+      <div class="highlight-card"><div class="hl-label">獲利天數</div><div class="hl-value" id="rpt-profit-days">—</div><div class="hl-sub" id="rpt-profit-rate">—</div></div>
+    </div>
+    <div class="card">
+      <div class="sub-title">每日損益走勢</div>
+      <div class="chart-bar-wrap" id="chart-bars"><div style="font-size:13px;color:var(--text3);margin:auto">尚無資料</div></div>
+      <div style="display:flex;gap:16px;font-size:11px;color:var(--text3);margin-top:4px">
+        <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:2px;margin-right:4px"></span>獲利</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:var(--red);border-radius:2px;margin-right:4px"></span>虧損</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sub-title">明細列表</div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>日期</th><th>天氣</th><th>數量</th><th>收入</th><th>支出</th><th>損益</th><th>備注</th></tr></thead>
+          <tbody id="report-table-body"><tr><td colspan="7" style="text-align:center;color:var(--text3);padding:1.5rem">請先在「每日記帳」新增資料</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -229,11 +443,27 @@
 </div>
 
 <script>
+// ── 資料 ──
 let ledger = JSON.parse(localStorage.getItem('rb_ledger') || '[]');
+let marketing = JSON.parse(localStorage.getItem('rb_marketing') || '[]');
+let flavors = JSON.parse(localStorage.getItem('rb_flavors') || '[]');
+let cashflow = JSON.parse(localStorage.getItem('rb_cashflow') || '[]');
+let stock = JSON.parse(localStorage.getItem('rb_stock') || 'null') || [
+  {name:'餅皮粉',qty:0,unit:'kg',warn:2},
+  {name:'紅豆',qty:0,unit:'kg',warn:1},
+  {name:'奶油',qty:0,unit:'kg',warn:0.5},
+  {name:'鮪魚',qty:0,unit:'罐',warn:3},
+  {name:'酥油',qty:0,unit:'kg',warn:0.5},
+  {name:'玉米粉',qty:0,unit:'kg',warn:0.5},
+  {name:'糖',qty:0,unit:'kg',warn:1},
+  {name:'美乃滋',qty:0,unit:'g',warn:200},
+  {name:'包裝袋',qty:0,unit:'個',warn:50},
+  {name:'瓦斯桶',qty:0,unit:'瓶',warn:1},
+];
 let tasks = JSON.parse(localStorage.getItem('rb_tasks') || 'null') || [
   {id:1,text:'找會計師事務所諮詢公司架構',cat:'財務',done:false},
   {id:2,text:'向智財局申請商標（約NT$3,000/類）',cat:'法務',done:false},
-  {id:3,text:'確認行銷公司與甜點店的關係架構（母子公司 or 合作）',cat:'法務',done:false},
+  {id:3,text:'確認行銷公司與甜點店的關係架構',cat:'法務',done:false},
   {id:4,text:'確認食品業者登錄（衛福部）',cat:'法務',done:false},
   {id:5,text:'申請公司統編或商業登記',cat:'財務',done:false},
   {id:6,text:'開立公司銀行帳戶',cat:'財務',done:false},
@@ -244,13 +474,19 @@ let tasks = JSON.parse(localStorage.getItem('rb_tasks') || 'null') || [
   {id:11,text:'建立 POS 或記帳流程',cat:'營運',done:false},
   {id:12,text:'辦理食品安全衛生管理人員訓練',cat:'法務',done:false},
 ];
-let nextId = 50;
+let nextId=50;
 
-function showTab(t) {
+// ── 工具 ──
+function showTab(t){
   document.querySelectorAll('.tab').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
   document.querySelector('[onclick="showTab(\''+t+'\')"]').classList.add('active');
   document.getElementById('tab-'+t).classList.add('active');
+  if(t==='report')renderReport();
+  if(t==='marketing')renderMarketing();
+  if(t==='flavor')renderFlavors();
+  if(t==='stock')renderStock();
+  if(t==='cashflow')renderCashflow();
 }
 function fmt(n){return(n>=0?'+':'')+'$'+Math.abs(Math.round(n)).toLocaleString();}
 function fmtAbs(n){return'$'+Math.round(Math.abs(n)).toLocaleString();}
@@ -258,42 +494,55 @@ function gv(id){return parseFloat(document.getElementById(id).value)||0;}
 function getFixed(){return gv('c-rent')+gv('c-salary')+gv('c-util')+gv('c-depr')+gv('c-mkt');}
 function getVar(){return gv('v-dough')+gv('v-fill')+gv('v-gas')+gv('v-pack');}
 function getDailyFixed(){return getFixed()/30;}
+function save(key,val){localStorage.setItem(key,JSON.stringify(val));}
 
+// ── 損益試算 ──
 function updatePnL(){
   const price=gv('sl-price'),qty=gv('sl-qty'),extra=gv('sl-extra');
   const vc=getVar(),df=getDailyFixed();
   document.getElementById('price-out').textContent=price;
   document.getElementById('qty-out').textContent=qty;
-  document.getElementById('extra-out').textContent=extra;
+  document.getElementById('extra-out').textContent=extra.toLocaleString();
   const rev=price*qty+extra,vcost=vc*qty,profit=rev-vcost-df;
   document.getElementById('m-revenue').textContent=fmtAbs(rev);
   document.getElementById('m-vcost').textContent=fmtAbs(vcost);
   document.getElementById('m-fcost').textContent=fmtAbs(df);
   const pEl=document.getElementById('m-profit');
-  pEl.textContent=fmt(profit);pEl.className='metric-value '+(profit>=0?'green':'red');
-  const um=price-vc,bep=um>0?Math.ceil(df/um):999;
-  document.getElementById('bep-qty').textContent=bep+' 個';
-  const pct=qty===0?0:Math.min(Math.round(qty/bep*100),200);
-  const pEl2=document.getElementById('bep-pct');
-  pEl2.textContent=pct+'%';pEl2.style.color=pct>=100?'var(--green)':pct>=70?'var(--amber)':'var(--red)';
-  const bar=document.getElementById('bep-bar');
-  bar.style.width=Math.min(pct,100)+'%';bar.style.background=pct>=100?'var(--green)':pct>=70?'var(--amber)':'var(--red)';
+  pEl.textContent=rev===0&&df===0?'$0':fmt(profit);
+  pEl.className='metric-value '+(profit>0?'green':profit<0?'red':'');
+  const um=price-vc;
+  if(um>0&&df>0){
+    const bep=Math.ceil(df/um);
+    document.getElementById('bep-qty').textContent=bep+' 個';
+    const pct=qty===0?0:Math.min(Math.round(qty/bep*100),200);
+    const pEl2=document.getElementById('bep-pct');
+    pEl2.textContent=pct+'%';pEl2.style.color=pct>=100?'var(--green)':pct>=70?'var(--amber)':'var(--red)';
+    const bar=document.getElementById('bep-bar');
+    bar.style.width=Math.min(pct,100)+'%';bar.style.background=pct>=100?'var(--green)':pct>=70?'var(--amber)':'var(--red)';
+  } else {
+    document.getElementById('bep-qty').textContent='請先填入成本';
+    document.getElementById('bep-pct').textContent='—';
+    document.getElementById('bep-bar').style.width='0%';
+  }
   document.getElementById('unit-margin').textContent='$'+um.toFixed(1);
-  document.getElementById('margin-rate').textContent=price>0?(um/price*100).toFixed(0)+'%':'0%';
+  document.getElementById('margin-rate').textContent=price>0?(um/price*100).toFixed(0)+'%':'—';
   const al=document.getElementById('pnl-alert');
-  if(profit>=0){al.className='alert alert-green';al.textContent='今天預估獲利 '+fmtAbs(profit)+'，繼續加油！';}
-  else if(profit>-df*0.3){al.className='alert alert-amber';al.textContent='差一點！還需再賣 '+Math.ceil(-profit/um)+' 個才打平。';}
+  if(df===0){al.className='alert alert-amber';al.textContent='請先到「成本設定」填入你的成本資料。';}
+  else if(profit>=0){al.className='alert alert-green';al.textContent='今天預估獲利 '+fmtAbs(profit)+'，繼續加油！';}
+  else if(profit>-df*0.3){al.className='alert alert-amber';al.textContent='差一點！還需再賣 '+Math.ceil(-profit/Math.max(um,0.01))+' 個才打平。';}
   else{al.className='alert alert-red';al.textContent='目前預估虧損 '+fmtAbs(profit)+'，需加強銷售或調整成本。';}
   const mp=profit*30;
   document.getElementById('m-month-rev').textContent=fmtAbs(rev*30);
-  const mpEl=document.getElementById('m-month-profit');mpEl.textContent=fmt(mp);mpEl.style.color=mp>=0?'var(--green)':'var(--red)';
+  const mpEl=document.getElementById('m-month-profit');
+  mpEl.textContent=rev===0&&df===0?'$0':fmt(mp);
+  mpEl.style.color=mp>=0?'var(--green)':'var(--red)';
   updatePayback();
 }
 function updateCosts(){
   document.getElementById('total-fixed').textContent=fmtAbs(getFixed());
   document.getElementById('daily-fixed').textContent=fmtAbs(getDailyFixed());
   document.getElementById('total-variable').textContent='$'+getVar().toFixed(1);
-  updatePnL();
+  updatePnL();renderTaxAlerts();
 }
 function updateInvest(){
   const t=gv('inv-equip')+gv('inv-deco')+gv('inv-tm')+gv('inv-acc')+gv('inv-other');
@@ -303,35 +552,59 @@ function updatePayback(){
   const invest=gv('inv-equip')+gv('inv-deco')+gv('inv-tm')+gv('inv-acc')+gv('inv-other');
   const mp=(gv('sl-price')*gv('sl-qty')+gv('sl-extra')-getVar()*gv('sl-qty')-getDailyFixed())*30;
   const el=document.getElementById('payback');
+  if(invest===0){el.textContent='請填入初始投資金額';return;}
   if(mp<=0){el.textContent='請先設定獲利方案';return;}
   el.textContent=Math.ceil(invest/mp)+' 個月';
 }
+
+// ── 稅務提醒 ──
+function renderTaxAlerts(){
+  const now=new Date();
+  const m=now.getMonth()+1,d=now.getDate();
+  const quarters=[{m:1,d:15,q:'Q4'},{m:4,d:15,q:'Q1'},{m:7,d:15,q:'Q2'},{m:10,d:15,q:'Q3'}];
+  let html='';
+  quarters.forEach(q=>{
+    const daysLeft=(new Date(now.getFullYear(),q.m-1,q.d)-now)/86400000;
+    if(daysLeft>=0&&daysLeft<=30){
+      html+=`<div class="alert ${daysLeft<=7?'alert-red':'alert-amber'}">${q.q} 營業稅申報截止日：${now.getFullYear()}/${q.m}/${q.d}，還有 ${Math.ceil(daysLeft)} 天！</div>`;
+    }
+  });
+  if(!html)html='<div style="font-size:13px;color:var(--text3)">目前無即將到期的稅務申報，下次申報日期請參考下方說明。</div>';
+  document.getElementById('tax-alerts').innerHTML=html;
+}
+
+// ── 每日記帳 ──
 function addRecord(){
   const date=document.getElementById('d-date').value;
   if(!date){alert('請選擇日期');return;}
   const qty=parseInt(gv('d-qty')),extra=gv('d-extra'),exp=gv('d-expense');
   const note=document.getElementById('d-note').value;
+  const weather=document.getElementById('d-weather').value;
   const rev=qty*gv('sl-price')+extra,totalExp=qty*getVar()+getDailyFixed()+exp;
-  ledger.unshift({date,qty,rev,totalExp,profit:rev-totalExp,note});
-  localStorage.setItem('rb_ledger',JSON.stringify(ledger));renderLedger();clearForm();
+  ledger.unshift({date,qty,rev,totalExp,profit:rev-totalExp,note,weather});
+  save('rb_ledger',ledger);renderLedger();updateMonthSelect();clearForm();
 }
 function clearForm(){
   ['d-qty','d-extra','d-expense'].forEach(id=>document.getElementById(id).value=0);
   document.getElementById('d-note').value='';
+  document.getElementById('d-weather').value='';
 }
 function deleteRecord(i){
-  if(!confirm('確定刪除這筆記錄？'))return;
-  ledger.splice(i,1);localStorage.setItem('rb_ledger',JSON.stringify(ledger));renderLedger();
+  if(!confirm('確定刪除？'))return;
+  ledger.splice(i,1);save('rb_ledger',ledger);renderLedger();updateMonthSelect();
 }
 function renderLedger(){
   const tbody=document.getElementById('ledger-body');
   if(!ledger.length){
-    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">尚無記錄，開始記帳吧！</td></tr>';
+    tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--text3);padding:2rem">尚無記錄，開始記帳吧！</td></tr>';
     ['sum-rev','sum-exp','sum-profit'].forEach(id=>{const e=document.getElementById(id);e.textContent='$0';e.className='metric-value';});
-    document.getElementById('sum-days').textContent='0 天';return;
+    document.getElementById('sum-days').textContent='0 天';
+    document.getElementById('weather-insight-card').style.display='none';
+    return;
   }
   tbody.innerHTML=ledger.map((r,i)=>`<tr>
-    <td style="white-space:nowrap">${r.date}</td><td>${r.qty}</td>
+    <td style="white-space:nowrap">${r.date}</td>
+    <td>${r.weather||'—'}</td><td>${r.qty}</td>
     <td style="color:var(--green);font-weight:500">${fmtAbs(r.rev)}</td>
     <td style="color:var(--red)">${fmtAbs(r.totalExp)}</td>
     <td style="font-weight:700;color:${r.profit>=0?'var(--green)':'var(--red)'}">${fmt(r.profit)}</td>
@@ -343,17 +616,338 @@ function renderLedger(){
   document.getElementById('sum-exp').textContent=fmtAbs(te);
   const sp=document.getElementById('sum-profit');sp.textContent=fmt(tp);sp.className='metric-value '+(tp>=0?'green':'red');
   document.getElementById('sum-days').textContent=ledger.length+' 天';
+  renderWeatherInsight();
 }
+function renderWeatherInsight(){
+  const weatherRecords=ledger.filter(r=>r.weather);
+  if(weatherRecords.length<2){document.getElementById('weather-insight-card').style.display='none';return;}
+  document.getElementById('weather-insight-card').style.display='block';
+  const groups={};
+  weatherRecords.forEach(r=>{
+    if(!groups[r.weather])groups[r.weather]=[];
+    groups[r.weather].push(r.profit);
+  });
+  let html='';
+  Object.entries(groups).forEach(([w,profits])=>{
+    const avg=profits.reduce((a,b)=>a+b,0)/profits.length;
+    html+=`<div class="info-row"><span>${w}（${profits.length}天）</span><span style="color:${avg>=0?'var(--green)':'var(--red)'};font-weight:700">平均 ${fmt(avg)}</span></div>`;
+  });
+  document.getElementById('weather-insight').innerHTML=html;
+}
+
+// ── 行銷費用 ──
+function addMarketing(){
+  const date=document.getElementById('mk-date').value;
+  if(!date){alert('請選擇日期');return;}
+  const cat=document.getElementById('mk-cat').value;
+  const amount=gv('mk-amount'),roiRev=gv('mk-roi-rev');
+  const note=document.getElementById('mk-note').value;
+  marketing.unshift({date,cat,amount,roiRev,note});
+  save('rb_marketing',marketing);renderMarketing();
+  document.getElementById('mk-amount').value=0;
+  document.getElementById('mk-roi-rev').value=0;
+  document.getElementById('mk-note').value='';
+}
+function deleteMarketing(i){
+  if(!confirm('確定刪除？'))return;
+  marketing.splice(i,1);save('rb_marketing',marketing);renderMarketing();
+}
+function renderMarketing(){
+  if(!marketing.length){
+    document.getElementById('mk-body').innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">尚無行銷費用記錄</td></tr>';
+    ['mk-total','mk-roi-total'].forEach(id=>document.getElementById(id).textContent='$0');
+    document.getElementById('mk-roi-rate').textContent='—';
+    document.getElementById('mk-top-cat').textContent='—';
+    document.getElementById('mk-breakdown').innerHTML='';
+    return;
+  }
+  const totalAmt=marketing.reduce((a,r)=>a+r.amount,0);
+  const totalRoi=marketing.reduce((a,r)=>a+r.roiRev,0);
+  const roiRate=totalAmt>0?((totalRoi-totalAmt)/totalAmt*100).toFixed(0)+'%':'—';
+  document.getElementById('mk-total').textContent=fmtAbs(totalAmt);
+  document.getElementById('mk-roi-total').textContent=fmtAbs(totalRoi);
+  const rEl=document.getElementById('mk-roi-rate');
+  rEl.textContent=roiRate;
+  rEl.className='metric-value '+(totalRoi>=totalAmt?'green':'red');
+  const catGroups={};
+  marketing.forEach(r=>{catGroups[r.cat]=(catGroups[r.cat]||0)+r.amount;});
+  const topCat=Object.entries(catGroups).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('mk-top-cat').textContent=topCat?topCat[0]:'—';
+  const colors=['#1D9E75','#E24B4A','#BA7517','#185FA5','#533AB7','#D4537E','#639922','#D85A30'];
+  let bHtml='';
+  Object.entries(catGroups).sort((a,b)=>b[1]-a[1]).forEach(([cat,amt],i)=>{
+    const pct=Math.round(amt/totalAmt*100);
+    const color=colors[i%colors.length];
+    bHtml+=`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px"><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:${color};display:inline-block"></span>${cat}</span><span style="font-weight:500">${fmtAbs(amt)} (${pct}%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${color}"></div></div></div>`;
+  });
+  document.getElementById('mk-breakdown').innerHTML=bHtml;
+  document.getElementById('mk-body').innerHTML=marketing.map((r,i)=>{
+    const roi=r.amount>0?((r.roiRev-r.amount)/r.amount*100).toFixed(0)+'%':'—';
+    return`<tr><td style="white-space:nowrap">${r.date}</td><td><span class="badge badge-blue">${r.cat}</span></td><td style="color:var(--red)">${fmtAbs(r.amount)}</td><td style="color:var(--green)">${r.roiRev>0?fmtAbs(r.roiRev):'—'}</td><td style="font-weight:500">${roi}</td><td style="color:var(--text3);font-size:12px">${r.note||'-'}</td><td><button class="btn btn-sm" onclick="deleteMarketing(${i})">刪除</button></td></tr>`;
+  }).join('');
+}
+
+// ── 口味銷售 ──
+const colorPalette=['#E24B4A','#BA7517','#185FA5','#533AB7','#1D9E75','#D85A30','#D4537E','#639922'];
+let flavorOptions=JSON.parse(localStorage.getItem('rb_flavorOptions')||'null')||['紅豆','奶油','鮪魚','季節限定'];
+function syncFlavorSelect(){
+  const sel=document.getElementById('fl-flavor');
+  if(!sel)return;
+  const cur=sel.value;
+  sel.innerHTML=flavorOptions.map(f=>`<option value="${f}">${f}</option>`).join('');
+  if(flavorOptions.includes(cur))sel.value=cur;
+}
+function addFlavorOption(){
+  const name=prompt('輸入新口味名稱：');
+  if(!name||!name.trim())return;
+  const n=name.trim();
+  if(flavorOptions.includes(n)){alert('此口味已存在！');return;}
+  flavorOptions.push(n);
+  save('rb_flavorOptions',flavorOptions);
+  syncFlavorSelect();
+  document.getElementById('fl-flavor').value=n;
+}
+function addFlavor(){
+  const date=document.getElementById('fl-date').value;
+  if(!date){alert('請選擇日期');return;}
+  const flavor=document.getElementById('fl-flavor').value;
+  const qty=parseInt(gv('fl-qty'));
+  if(!qty){alert('請填入數量');return;}
+  flavors.unshift({date,flavor,qty});
+  save('rb_flavors',flavors);renderFlavors();
+  document.getElementById('fl-qty').value=0;
+}
+function deleteFlavor(i){
+  if(!confirm('確定刪除？'))return;
+  flavors.splice(i,1);save('rb_flavors',flavors);renderFlavors();
+}
+function getFlavorColor(f){
+  const idx=flavorOptions.indexOf(f);
+  return colorPalette[idx>=0?idx%colorPalette.length:colorPalette.length-1];
+}
+function renderFlavors(){
+  syncFlavorSelect();
+  if(!flavors.length){
+    document.getElementById('fl-body').innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:2rem">尚無口味銷售記錄</td></tr>';
+    document.getElementById('flavor-chart').innerHTML='<div style="font-size:13px;color:var(--text3)">尚無資料</div>';
+    return;
+  }
+  const groups={};
+  flavors.forEach(r=>{groups[r.flavor]=(groups[r.flavor]||0)+r.qty;});
+  const total=Object.values(groups).reduce((a,b)=>a+b,0);
+  let chartHtml='';
+  Object.entries(groups).sort((a,b)=>b[1]-a[1]).forEach(([f,q])=>{
+    const pct=Math.round(q/total*100);
+    const color=getFlavorColor(f);
+    chartHtml+=`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px"><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:${color};display:inline-block"></span>${f}</span><span style="font-weight:700">${q.toLocaleString()} 個 (${pct}%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${color}"></div></div></div>`;
+  });
+  document.getElementById('flavor-chart').innerHTML=chartHtml;
+  document.getElementById('fl-body').innerHTML=flavors.map((r,i)=>`<tr><td style="white-space:nowrap">${r.date}</td><td><span style="display:inline-flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:${getFlavorColor(r.flavor)};display:inline-block"></span>${r.flavor}</span></td><td>${r.qty} 個</td><td><button class="btn btn-sm" onclick="deleteFlavor(${i})">刪除</button></td></tr>`).join('');
+}
+
+// ── 庫存管理 ──
+function renderStock(){
+  let html='';
+  stock.forEach((s,i)=>{
+    const status=s.qty<=0?'red':s.qty<=s.warn?'amber':'green';
+    const statusText=s.qty<=0?'⚠ 已用完':s.qty<=s.warn?'⚠ 快用完了':'✓ 充足';
+    html+=`<tr>
+      <td style="font-weight:500">${s.name}</td>
+      <td><input type="number" value="${s.qty}" min="0" step="0.1" id="stock-qty-${i}" style="width:75px;padding:4px 8px;border:1px solid var(--border2);border-radius:6px;font-size:13px;font-family:inherit"></td>
+      <td style="color:var(--text3)">${s.unit}</td>
+      <td><input type="number" value="${s.warn}" min="0" step="0.1" id="stock-warn-${i}" style="width:65px;padding:4px 8px;border:1px solid var(--border2);border-radius:6px;font-size:13px;font-family:inherit"></td>
+      <td><span class="badge ${status==='red'?'badge-red':status==='amber'?'badge-amber':'badge-green'}">${statusText}</span></td>
+      <td><button class="btn btn-sm" style="color:var(--red)" onclick="deleteStockItem(${i})">刪除</button></td>
+    </tr>`;
+  });
+  document.getElementById('stock-table').innerHTML=html;
+  let alertHtml='';
+  stock.forEach(s=>{
+    if(s.qty<=0)alertHtml+=`<div class="stock-alert stock-alert-red">🚨 ${s.name} 已用完，請立即補貨！</div>`;
+    else if(s.qty<=s.warn)alertHtml+=`<div class="stock-alert stock-alert-amber">⚠ ${s.name} 剩 ${s.qty} ${s.unit}，快用完了！</div>`;
+  });
+  document.getElementById('stock-alerts-wrap').innerHTML=alertHtml;
+}
+function saveStock(){
+  stock.forEach((s,i)=>{
+    s.qty=parseFloat(document.getElementById('stock-qty-'+i).value)||0;
+    s.warn=parseFloat(document.getElementById('stock-warn-'+i).value)||0;
+  });
+  save('rb_stock',stock);renderStock();
+  const btn=event.target;btn.textContent='已儲存 ✓';setTimeout(()=>btn.textContent='儲存庫存',1500);
+}
+function addStockItem(){
+  const name=prompt('輸入原料名稱：');
+  if(!name||!name.trim())return;
+  const unit=prompt('輸入單位（例：kg、個、罐、瓶）：')||'個';
+  stock.push({name:name.trim(),qty:0,unit:unit.trim(),warn:1});
+  save('rb_stock',stock);renderStock();
+}
+function deleteStockItem(i){
+  if(!confirm('確定刪除「'+stock[i].name+'」？'))return;
+  stock.splice(i,1);save('rb_stock',stock);renderStock();
+}
+
+// ── 現金流 ──
+function addCashflow(){
+  const date=document.getElementById('cf-date').value;
+  if(!date){alert('請選擇日期');return;}
+  const type=document.getElementById('cf-type').value;
+  const amount=gv('cf-amount');
+  const note=document.getElementById('cf-note').value;
+  const isIn=type==='收入'||type==='投資';
+  cashflow.unshift({date,type,amount,note,isIn});
+  save('rb_cashflow',cashflow);renderCashflow();
+  document.getElementById('cf-amount').value=0;
+  document.getElementById('cf-note').value='';
+}
+function deleteCashflow(i){
+  if(!confirm('確定刪除？'))return;
+  cashflow.splice(i,1);save('rb_cashflow',cashflow);renderCashflow();
+}
+function renderCashflow(){
+  if(!cashflow.length){
+    document.getElementById('cf-body').innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:2rem">尚無現金流記錄</td></tr>';
+    ['cf-balance','cf-in','cf-out','cf-net'].forEach(id=>document.getElementById(id).textContent='$0');
+    return;
+  }
+  const sorted=[...cashflow].sort((a,b)=>a.date.localeCompare(b.date));
+  let balance=0;
+  const withBalance=sorted.map(r=>{balance+=r.isIn?r.amount:-r.amount;return{...r,balance};});
+  const now=new Date().toISOString().slice(0,7);
+  const thisMonth=withBalance.filter(r=>r.date.slice(0,7)===now);
+  const monthIn=thisMonth.filter(r=>r.isIn).reduce((a,r)=>a+r.amount,0);
+  const monthOut=thisMonth.filter(r=>!r.isIn).reduce((a,r)=>a+r.amount,0);
+  document.getElementById('cf-balance').textContent=fmt(balance).replace('+','');
+  document.getElementById('cf-balance').className='metric-value '+(balance>=0?'green':'red');
+  document.getElementById('cf-in').textContent=fmtAbs(monthIn);
+  document.getElementById('cf-out').textContent=fmtAbs(monthOut);
+  const netEl=document.getElementById('cf-net');netEl.textContent=fmt(monthIn-monthOut);netEl.className='metric-value '+(monthIn>=monthOut?'green':'red');
+  const display=[...withBalance].reverse();
+  document.getElementById('cf-body').innerHTML=display.map((r,i)=>`<tr>
+    <td style="white-space:nowrap">${r.date}</td>
+    <td><span class="badge ${r.isIn?'badge-green':'badge-red'}">${r.type}</span></td>
+    <td style="color:${r.isIn?'var(--green)':'var(--red)'};font-weight:500">${r.isIn?'+':'−'}${fmtAbs(r.amount)}</td>
+    <td style="font-weight:700;color:${r.balance>=0?'var(--green)':'var(--red)'}">${fmtAbs(r.balance)}</td>
+    <td style="color:var(--text3);font-size:12px">${r.note||'-'}</td>
+    <td><button class="btn btn-sm" onclick="deleteCashflow(${display.length-1-i})">刪除</button></td>
+  </tr>`).join('');
+}
+
+// ── 報表 ──
+function updateMonthSelect(){
+  const sel=document.getElementById('report-month');
+  const months=[...new Set(ledger.map(r=>r.date.slice(0,7)))].sort().reverse();
+  const cur=sel.value;
+  sel.innerHTML=months.length?months.map(m=>`<option value="${m}">${m}</option>`).join(''):'<option value="">無資料</option>';
+  if(months.includes(cur))sel.value=cur;
+}
+function getFilteredRecords(){
+  const type=document.getElementById('report-type').value;
+  const month=document.getElementById('report-month').value;
+  if(!month)return[];
+  if(type==='month')return ledger.filter(r=>r.date.slice(0,7)===month).sort((a,b)=>a.date.localeCompare(b.date));
+  const today=new Date(month+'-01');
+  const dow=today.getDay();
+  const monday=new Date(today);monday.setDate(today.getDate()-(dow===0?6:dow-1));
+  const sunday=new Date(monday);sunday.setDate(monday.getDate()+6);
+  const ms=monday.toISOString().slice(0,10),ss=sunday.toISOString().slice(0,10);
+  return ledger.filter(r=>r.date>=ms&&r.date<=ss).sort((a,b)=>a.date.localeCompare(b.date));
+}
+function renderReport(){
+  const records=getFilteredRecords();
+  if(!records.length){
+    document.getElementById('rpt-rev').textContent='$0';
+    document.getElementById('rpt-exp').textContent='$0';
+    const rp=document.getElementById('rpt-profit');rp.textContent='$0';rp.className='metric-value';
+    document.getElementById('rpt-days').textContent='0 天';
+    ['rpt-best-val','rpt-worst-val','rpt-avg','rpt-profit-days'].forEach(id=>document.getElementById(id).textContent='—');
+    ['rpt-best-date','rpt-worst-date','rpt-profit-rate'].forEach(id=>document.getElementById(id).textContent='—');
+    document.getElementById('chart-bars').innerHTML='<div style="font-size:13px;color:var(--text3);margin:auto">尚無資料</div>';
+    document.getElementById('report-table-body').innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:1.5rem">本期無記帳資料</td></tr>';
+    return;
+  }
+  const totalRev=records.reduce((a,r)=>a+r.rev,0);
+  const totalExp=records.reduce((a,r)=>a+r.totalExp,0);
+  const totalProfit=totalRev-totalExp;
+  document.getElementById('rpt-rev').textContent=fmtAbs(totalRev);
+  document.getElementById('rpt-exp').textContent=fmtAbs(totalExp);
+  const rp=document.getElementById('rpt-profit');rp.textContent=fmt(totalProfit);rp.className='metric-value '+(totalProfit>=0?'green':'red');
+  document.getElementById('rpt-days').textContent=records.length+' 天';
+  const best=records.reduce((a,b)=>b.profit>a.profit?b:a);
+  const worst=records.reduce((a,b)=>b.profit<a.profit?b:a);
+  const avg=totalProfit/records.length;
+  const profitDays=records.filter(r=>r.profit>=0).length;
+  document.getElementById('rpt-best-val').textContent=fmt(best.profit);
+  document.getElementById('rpt-best-date').textContent=best.date;
+  document.getElementById('rpt-worst-val').textContent=fmt(worst.profit);
+  document.getElementById('rpt-worst-date').textContent=worst.date;
+  const avgEl=document.getElementById('rpt-avg');avgEl.textContent=fmt(avg);avgEl.className='hl-value '+(avg>=0?'green':'red');
+  document.getElementById('rpt-profit-days').textContent=profitDays+' 天';
+  document.getElementById('rpt-profit-rate').textContent=Math.round(profitDays/records.length*100)+'% 獲利率';
+  const maxAbs=Math.max(...records.map(r=>Math.abs(r.profit)),1);
+  document.getElementById('chart-bars').innerHTML=records.map(r=>{
+    const h=Math.max(Math.round(Math.abs(r.profit)/maxAbs*100),2);
+    const color=r.profit>=0?'var(--green)':'var(--red)';
+    return`<div class="chart-bar-col"><div class="chart-bar" style="height:${h}px;background:${color}" title="${r.date}: ${fmt(r.profit)}"></div><div class="chart-bar-label">${r.date.slice(5)}</div></div>`;
+  }).join('');
+  document.getElementById('report-table-body').innerHTML=records.map(r=>`<tr>
+    <td style="white-space:nowrap">${r.date}</td><td>${r.weather||'—'}</td><td>${r.qty}</td>
+    <td style="color:var(--green)">${fmtAbs(r.rev)}</td>
+    <td style="color:var(--red)">${fmtAbs(r.totalExp)}</td>
+    <td style="font-weight:700;color:${r.profit>=0?'var(--green)':'var(--red)'}">${fmt(r.profit)}</td>
+    <td style="color:var(--text3);font-size:12px">${r.note||'-'}</td>
+  </tr>`).join('');
+}
+
+// ── 匯出 CSV ──
+function downloadCSV(filename,rows){
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=filename;a.click();
+}
+function exportPeriodCSV(){
+  const records=getFilteredRecords();
+  if(!records.length){alert('本期無資料');return;}
+  const month=document.getElementById('report-month').value;
+  const rows=[['日期','天氣','紅豆餅數量','收入（元）','支出（元）','損益（元）','備注']];
+  records.forEach(r=>rows.push([r.date,r.weather||'',r.qty,Math.round(r.rev),Math.round(r.totalExp),Math.round(r.profit),r.note||'']));
+  const tr=records.reduce((a,r)=>a+r.rev,0),te=records.reduce((a,r)=>a+r.totalExp,0);
+  rows.push(['合計','','',Math.round(tr),Math.round(te),Math.round(tr-te),'']);
+  downloadCSV('甜點店報表_'+month+'.csv',rows);
+}
+function exportAllCSV(){
+  if(!ledger.length){alert('尚無任何記帳資料');return;}
+  const sorted=[...ledger].sort((a,b)=>a.date.localeCompare(b.date));
+  const rows=[['日期','天氣','紅豆餅數量','收入（元）','支出（元）','損益（元）','備注']];
+  sorted.forEach(r=>rows.push([r.date,r.weather||'',r.qty,Math.round(r.rev),Math.round(r.totalExp),Math.round(r.profit),r.note||'']));
+  const tr=sorted.reduce((a,r)=>a+r.rev,0),te=sorted.reduce((a,r)=>a+r.totalExp,0);
+  rows.push(['全部合計','','',Math.round(tr),Math.round(te),Math.round(tr-te),'']);
+  downloadCSV('甜點店全部帳目.csv',rows);
+}
+function exportMonthSummaryCSV(){
+  if(!ledger.length){alert('尚無任何記帳資料');return;}
+  const months=[...new Set(ledger.map(r=>r.date.slice(0,7)))].sort();
+  const rows=[['月份','記帳天數','總收入（元）','總支出（元）','月損益（元）','獲利天數','獲利率']];
+  months.forEach(m=>{
+    const mrs=ledger.filter(r=>r.date.slice(0,7)===m);
+    const rev=mrs.reduce((a,r)=>a+r.rev,0),exp=mrs.reduce((a,r)=>a+r.totalExp,0);
+    const pd=mrs.filter(r=>r.profit>=0).length;
+    rows.push([m,mrs.length,Math.round(rev),Math.round(exp),Math.round(rev-exp),pd,Math.round(pd/mrs.length*100)+'%']);
+  });
+  downloadCSV('甜點店月度摘要.csv',rows);
+}
+
+// ── 待辦 ──
 function addTask(){
   const text=document.getElementById('new-task-text').value.trim();
   const cat=document.getElementById('new-task-cat').value;
   if(!text)return;
   tasks.push({id:nextId++,text,cat,done:false});
   document.getElementById('new-task-text').value='';
-  localStorage.setItem('rb_tasks',JSON.stringify(tasks));renderTasks();
+  save('rb_tasks',tasks);renderTasks();
 }
-function toggleTask(id){const t=tasks.find(t=>t.id===id);if(t)t.done=!t.done;localStorage.setItem('rb_tasks',JSON.stringify(tasks));renderTasks();}
-function deleteTask(id){tasks=tasks.filter(t=>t.id!==id);localStorage.setItem('rb_tasks',JSON.stringify(tasks));renderTasks();}
+function toggleTask(id){const t=tasks.find(t=>t.id===id);if(t)t.done=!t.done;save('rb_tasks',tasks);renderTasks();}
+function deleteTask(id){tasks=tasks.filter(t=>t.id!==id);save('rb_tasks',tasks);renderTasks();}
 function renderTasks(){
   const catOrder=['法務','財務','行銷','營運'];
   const catBadge={'法務':'badge-red','財務':'badge-green','行銷':'badge-amber','營運':'badge-amber'};
@@ -372,8 +966,13 @@ function renderTasks(){
   document.getElementById('t-todo').textContent=todo;
   const re=document.getElementById('t-rate');re.textContent=rate+'%';re.className='metric-value '+(rate>=80?'green':rate>=40?'amber':'');
 }
+
+// ── Init ──
 document.getElementById('d-date').valueAsDate=new Date();
-updateCosts();renderLedger();renderTasks();
+document.getElementById('mk-date').valueAsDate=new Date();
+document.getElementById('fl-date').valueAsDate=new Date();
+document.getElementById('cf-date').valueAsDate=new Date();
+updateCosts();renderLedger();renderTasks();updateMonthSelect();renderTaxAlerts();syncFlavorSelect();
 </script>
 </body>
 </html>
